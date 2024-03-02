@@ -29,7 +29,8 @@ source ~/.bashrc
 # Clone the repository and run the application
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
-cd ceremonyclient/node && GOEXPERIMENT=arenas go run ./...
+cd ceremonyclient/node
+GOEXPERIMENT=arenas go run ./...
 
 # Wait for 30 seconds before rebooting
 sleep 30

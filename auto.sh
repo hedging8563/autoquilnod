@@ -30,8 +30,13 @@ source ~/.bashrc
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
 cd ceremonyclient/node
-GOEXPERIMENT=arenas /usr/local/go/bin/go run ./...
 
-# Wait for 30 seconds before rebooting
+# Run the Go program in the background
+GOEXPERIMENT=arenas /usr/local/go/bin/go run ./... &
+
+# Wait for a few seconds before rebooting
 sleep 30
+
+# Reboot the system
+echo "Rebooting..."
 sudo reboot

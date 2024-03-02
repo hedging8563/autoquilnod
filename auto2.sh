@@ -12,7 +12,7 @@ sudo bash -c 'echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Se
 systemctl daemon-reload
 service ceremonyclient start
 
-# Wait for 6 minutes (360 seconds)
+# Wait for 30 seconds
 sleep 30
 
 # Execute both commands in a single tmux session

@@ -16,5 +16,5 @@ service ceremonyclient start
 sleep 30
 
 # Execute both commands in a single tmux session
-tmux new-session -d -s ceremony_tasks 'go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest; service ceremonyclient status'
+tmux new-session -d -s 0 'go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest; service ceremonyclient status'
 

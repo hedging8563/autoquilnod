@@ -13,7 +13,7 @@ systemctl daemon-reload
 service ceremonyclient start
 
 # Wait for 6 minutes (360 seconds)
-sleep 360
+sleep 60
 
 # Execute both commands in a single tmux session
 tmux new-session -d -s ceremony_tasks 'go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest; service ceremonyclient status'

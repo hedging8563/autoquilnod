@@ -7,6 +7,7 @@ sudo apt-get install git tmux jq -y
 # 下载和安装 Go
 wget https://go.dev/dl/go1.20.14.linux-amd64.tar.gz
 sudo tar -xvf go1.20.14.linux-amd64.tar.gz
+sudo mv go /usr/local
 
 # 配置 Go 环境变量
 echo -e "\nGOROOT=/usr/local/go\nGOPATH=\$HOME/go\nPATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> ~/.bashrc

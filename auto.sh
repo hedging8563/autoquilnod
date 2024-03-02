@@ -23,7 +23,7 @@ cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
 cd ceremonyclient/node && GOEXPERIMENT=arenas go run ./... &
 GO_PID=$!
-sleep 180
+sleep 30
 
 # Try multiple times to terminate the process until successful
 for i in {1..5}; do
@@ -36,7 +36,7 @@ if ps -p $GO_PID > /dev/null; then
     kill -9 $GO_PID
 fi
 
-sed -i "s@listenGrpcMultiaddr: \"\"@listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337@" .config/config.yml
+sed -i "s@listenGrpcMultiaddr: \"\"@listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337@" ceremonyclient/node/.config/config.yml
 GOEXPERIMENT=arenas go install ./...
 sudo bash -c 'echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Service]\nType=simple\nRestart=always\nRestartSec=5s\nWorkingDirectory=/root/ceremonyclient/node\nEnvironment=GOEXPERIMENT=arenas\nExecStart=/root/go/bin/node ./...\n\n[Install]\nWantedBy=multi-user.target" > /lib/systemd/system/ceremonyclient.service'
 systemctl start ceremonyclient

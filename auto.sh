@@ -9,6 +9,9 @@ append_if_not_exists() {
 sudo apt-get update
 sudo apt-get install git jq -y
 
+echo -e "\n# Increase buffer sizes for better network performance\nnet.core.rmem_max=600000000\nnet.core.wmem_max=600000000" | sudo tee -a /etc/sysctl.conf > /dev/null
+sudo sysctl -p
+
 wget https://go.dev/dl/go1.20.14.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go1.20.14.linux-amd64.tar.gz
 
@@ -19,27 +22,9 @@ append_if_not_exists 'PATH=$GOPATH/bin:$GOROOT/bin:$PATH' ~/.bashrc
 
 source ~/.bashrc
 
+
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
-cd ceremonyclient/node && GOEXPERIMENT=arenas go run ./... &
-GO_PID=$!
+cd ceremonyclient/node && GOEXPERIMENT=arenas go run ./... 
 sleep 30
-
-# Try multiple times to terminate the process until successful
-for i in {1..5}; do
-    pkill -P $GO_PID
-    sleep 5
-done
-
-if ps -p $GO_PID > /dev/null; then
-    echo "Process still running, force killing..."
-    kill -9 $GO_PID
-fi
-
-sed -i "s@listenGrpcMultiaddr: \"\"@listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337@" ceremonyclient/node/.config/config.yml
-GOEXPERIMENT=arenas go install ./...
-sudo bash -c 'echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Service]\nType=simple\nRestart=always\nRestartSec=5s\nWorkingDirectory=/root/ceremonyclient/node\nEnvironment=GOEXPERIMENT=arenas\nExecStart=/root/go/bin/node ./...\n\n[Install]\nWantedBy=multi-user.target" > /lib/systemd/system/ceremonyclient.service'
-systemctl start ceremonyclient
-go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-sleep 360
-tmux new-session -d -s ceremonyclient_session 'service ceremonyclient status'
+reboot

@@ -2,7 +2,7 @@
 
 # 安装 jq
 sudo apt-get update
-sudo apt-get install jq -y
+sudo apt-get install git tmux jq -y
 
 # 下载和安装 Go
 wget https://go.dev/dl/go1.20.14.linux-amd64.tar.gz

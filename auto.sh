@@ -29,7 +29,6 @@ source ~/.bashrc
 # Clone the repository and run the application
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
-cd $HOME
 cd ceremonyclient/node
 GOEXPERIMENT=arenas go run ./...
 

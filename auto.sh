@@ -35,7 +35,7 @@ cd ceremonyclient/node
 GOEXPERIMENT=arenas /usr/local/go/bin/go run ./... &
 
 # Wait for a few seconds before rebooting
-sleep 60
+sleep 360
 
 # Reboot the system
 echo "Rebooting..."

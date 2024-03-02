@@ -3,8 +3,8 @@
 # Update the configuration file
 sed -i "s@listenGrpcMultiaddr: \"\"@listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337@" ceremonyclient/node/.config/config.yml
 
-# Install grpcurl in background
-(go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest) &
+# Install grpcurl
+go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 
 # Build and install the Go application
 cd ceremonyclient/node

@@ -29,4 +29,3 @@ sleep 60s
 sudo bash -c '\''echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Service]\nType=simple\nRestart=always\nRestartSec=5s\nWorkingDirectory=/root/ceremonyclient/node\nEnvironment=GOEXPERIMENT=arenas\nExecStart=/root/go/bin/node ./...\n\n[Install]\nWantedBy=multi-user.target" > /lib/systemd/system/ceremonyclient.service'\'' 
 service ceremonyclient start
 go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-'

@@ -2,7 +2,7 @@
 
 # Update package lists and install necessary packages
 sudo apt-get update
-sudo apt-get install -y git jq
+sudo apt-get install -y git tmux jq
 
 # Increase buffer sizes for better network performance
 echo -e "\n# Increase buffer sizes for better network performance\nnet.core.rmem_max=600000000\nnet.core.wmem_max=600000000" | sudo tee -a /etc/sysctl.conf > /dev/null

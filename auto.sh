@@ -30,7 +30,7 @@ source ~/.bashrc
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
 cd ceremonyclient/node
-GOEXPERIMENT=arenas $GOPATH/bin/go run ./...
+GOEXPERIMENT=arenas $GOROOT/bin/go run ./...
 
 # Wait for 30 seconds before rebooting
 sleep 30

@@ -18,8 +18,7 @@ source ~/.bashrc
 
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
-cd ceremonyclient/node
-GOEXPERIMENT=arenas go run ./...
+cd ceremonyclient/node && GOEXPERIMENT=arenas go run ./...
 sleep 180s
 pkill go
 echo "s@listenGrpcMultiaddr: \"\"@listenGrpcMultiaddr: /ip4/127.0.0.1/tcp/8337@" | sed -i'' -f - .config/config.yml

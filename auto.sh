@@ -9,10 +9,13 @@ wget https://go.dev/dl/go1.20.14.linux-amd64.tar.gz
 sudo tar -xvf go1.20.14.linux-amd64.tar.gz
 
 # 配置 Go 环境变量
-echo -e "\nGOROOT=/usr/local/go\nGOPATH=\$HOME/go\nPATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH\nsource ~/.bashrc" >> ~/.bashrc
+echo -e "\nGOROOT=/usr/local/go\nGOPATH=\$HOME/go\nPATH=\$GOPATH/bin:\$GOROOT/bin:\$PATH" >> ~/.bashrc
 
-# 在 tmux 会话中执行剩余操作
-tmux new-session -d '
+#载入配置
+source ~/.bashrc
+
+# 安装Node
+
 cd $HOME
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
 cd ceremonyclient/node

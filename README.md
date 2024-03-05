@@ -30,8 +30,7 @@ sudo journalctl -u ceremonyclient.service -f --no-hostname -o cat
 grpcurl -plaintext localhost:8337 quilibrium.node.node.pb.NodeService.GetNodeInfo
 
 ### Check $QUIL balance
-cd ~/ceremonyclient/node
-GOEXPERIMENT=arenas /root/go/bin/node -balance
+cd ~/ceremonyclient/node && GOEXPERIMENT=arenas /root/go/bin/node -balance
 
 ### Count of all Quilibrium Nodes
 grpcurl -plaintext -max-msg-sz 6000000 localhost:8337 quilibrium.node.node.pb.NodeService.GetPeerInfo | grep peerId | wc -l

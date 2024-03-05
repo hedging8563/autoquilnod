@@ -15,8 +15,10 @@ curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/auto2.sh |
 curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/update.sh | bash
 ```
 
-## Backup config and keys
+## Backup config and keys files
+
 /root/ceremonyclient/node/.config/config.yml
+
 /root/ceremonyclient/node/.config/keys.yml
 
 ## Log

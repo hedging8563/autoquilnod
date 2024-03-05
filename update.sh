@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# 停止 ceremonyclient 服务
+# Stop the ceremonyclient service
 service ceremonyclient stop
 
-# 切换到 ~/ceremonyclient 目录
+# Switch to the ~/ceremonyclient directory
 cd ~/ceremonyclient
 
-# 从远程仓库拉取更新
+# Fetch updates from the remote repository
 git fetch origin
 git merge origin
 
-# 切换到 ~/ceremonyclient/node 目录
+# Switch to the ~/ceremonyclient/node directory
 cd ~/ceremonyclient/node
 
-# 清理并重新安装 node
+# Clean and reinstall node
 GOEXPERIMENT=arenas go clean -v -n -a ./...
 rm /root/go/bin/node
 GOEXPERIMENT=arenas go install ./...
 
-# 启动 ceremonyclient 服务
+# Start the ceremonyclient service
 service ceremonyclient start

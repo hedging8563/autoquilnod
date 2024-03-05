@@ -11,6 +11,10 @@ cd ceremonyclient/node
 GOEXPERIMENT=arenas /usr/local/go/bin/go install ./...
 
 # Create and start the systemd service
-sudo bash -c 'echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Service]\nType=simple\nRestart=always\nRestartSec=5s\nWorkingDirectory=/root/ceremonyclient/node\nEnvironment=GOEXPERIMENT=arenas\nExecStart=/root/go/bin/node ./...\n\n[Install]\nWantedBy=multi-user.target" > /lib/systemd/system/ceremonyclient.service'
+sudo echo -e "[Unit]\nDescription=Ceremony Client Go App Service\n\n[Service]\nCPUQuota=720%\nType=simple\nRestart=always\nRestartSec=5s\nWorkingDirectory=/root/ceremonyclient/node\nEnvironment=GOEXPERIMENT=arenas\nExecStart=/root/go/bin/node ./...\n\n[Install]\nWantedBy=multi-user.target" | sudo tee /lib/systemd/system/ceremonyclient.service
+
+# 在 /lib/systemd/system/ceremonyclient.service 文件中添加 CPUQuota=720%
+sudo sed -i '/\[Service\]/a CPUQuota=720%' /lib/systemd/system/ceremonyclient.service
+
 systemctl daemon-reload
 service ceremonyclient start

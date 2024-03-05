@@ -3,7 +3,7 @@
 install step 1
 
 ```
-curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/auto.sh| bash
+curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/auto.sh | bash
 ```
 
 install step 2

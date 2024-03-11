@@ -15,7 +15,7 @@ cd ~/ceremonyclient/node
 
 # Clean and reinstall node
 GOEXPERIMENT=arenas go clean -v -n -a ./...
-rm ~/root/go/bin/node
+rm /root/go/bin/node
 GOEXPERIMENT=arenas go install ./...
 
 # Start the ceremonyclient service

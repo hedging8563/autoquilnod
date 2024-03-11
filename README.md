@@ -5,7 +5,7 @@
 curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/auto.sh | bash
 ```
 
-### Installation Step 2 # With limitation of 720% CPU quota for 8 vCUPs VPS
+### Installation Step 2
 ```
 curl -sSL https://raw.githubusercontent.com/hedging8563/quilnode/main/auto2.sh | bash
 ```

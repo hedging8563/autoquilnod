@@ -1,13 +1,14 @@
 #!/bin/bash
 
+# Remove existing directories and files
 rm -rf /root/ceremonyclient
-rm -rf /root/go/bin/node
-rm -rf /lib/systemd/system/ceremonyclient.service
+rm /root/go/bin/node
+sudo rm /lib/systemd/system/ceremonyclient.service
 
 # Clone the repository and run the application
-cd $HOME
+cd $HOME || exit
 git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
-cd ceremonyclient/node
+cd ceremonyclient/node || exit
 
 # Build the Go program
 GOEXPERIMENT=arenas /usr/local/go/bin/go build ./...

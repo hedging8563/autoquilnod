@@ -20,3 +20,6 @@ GOEXPERIMENT=arenas go install ./...
 
 # Start the ceremonyclient service
 service ceremonyclient start
+
+# Start the ceremonyclient status
+service ceremonyclient status

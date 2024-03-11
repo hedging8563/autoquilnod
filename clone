@@ -1,0 +1,35 @@
+#!/bin/bash
+
+rm -rf /root/ceremonyclient
+rm -rf /root/go/bin/node
+rm -rf /lib/systemd/system/ceremonyclient.service
+
+# Clone the repository and run the application
+cd $HOME
+git clone https://github.com/QuilibriumNetwork/ceremonyclient.git
+cd ceremonyclient/node
+
+# Build the Go program
+GOEXPERIMENT=arenas /usr/local/go/bin/go build ./...
+
+# Start the Go program as a systemd service
+sudo tee /lib/systemd/system/ceremonyclient.service << EOF
+[Unit]
+Description=Ceremony Client Go App Service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+WorkingDirectory=$HOME/ceremonyclient/node
+Environment=GOEXPERIMENT=arenas
+ExecStart=/root/go/bin/node ./...
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Reload systemd and start the service
+sudo systemctl daemon-reload
+sudo systemctl start ceremonyclient.service
+sudo systemctl enable ceremonyclient.service
